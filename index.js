@@ -8,7 +8,6 @@ const texmlPath = '/texml';
 const callPath = '/calls';
 const cors = require('cors')
 
-
 const app = express();
 app.use(cors());
 app.use(express.static('public'))

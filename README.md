@@ -12,6 +12,11 @@ Sample application demonstrating Telnyx-Node IVR with TeXML and WebRTC
 
 The full documentation and tutorial is available on [developers.telnyx.com](https://developers.telnyx.com/docs/v2/development/dev-env-setup?lang=node&utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link)
 
+## Video Walk Through
+
+[![Play Video](video_play.png)](https://drive.google.com/file/d/1naw6YMfuzvjX1oL73kpS41y4SfFTwakd/view?usp=sharing)
+[👉Click Here👈](https://drive.google.com/file/d/1naw6YMfuzvjX1oL73kpS41y4SfFTwakd/view?usp=sharing)
+
 ## Pre-Reqs
 
 You will need to set up:
