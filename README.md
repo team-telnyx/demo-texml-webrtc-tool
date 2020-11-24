@@ -101,7 +101,7 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
                               0       0       0.00    0.00    0.00    0.00
 ```
 
-At this point you can point your application to generated ngrok URL + path  (Example: `http://{your-url}.ngrok.io/call-control/answer`).
+At this point you can point your application to generated ngrok URL + path  (Example: `http://{your-url}.ngrok.io/texml/answer`).
 
 ### Run
 
@@ -123,8 +123,9 @@ The service exposes a path at `http://your-url.ngrok.io/calls` to accept a JSON 
 curl --location --request POST 'http://your-url.ngrok.io/calls' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "to": "+19198675309",
-    "from": "+19842550944"
+    "to": "+14154886792",
+    "from": "+19842550944",
+    "sipURI": "sip:dant48180@sip.telnyx.com"
 }'
 ```
 

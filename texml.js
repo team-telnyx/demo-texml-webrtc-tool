@@ -19,6 +19,6 @@ module.exports.conferenceTeXML = conferenceGreeting => `<?xml version="1.0" enco
 <Response>
   <Say voice="alice">${conferenceGreeting}</Say>
   <Dial>
-    <Conference>Conf123</Conference>
+    <Conference>Conf456</Conference>
   </Dial>
 </Response>`;
