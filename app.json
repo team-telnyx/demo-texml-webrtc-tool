@@ -10,11 +10,14 @@
     },
     "TELNYX_CONNECTION_ID": {
       "description": "Your Telnyx TeXML Connection ID"
+    },
+    "TELNYX_MESSAGING_PROFILE_ID": {
+      "description": "Your Telnyx Messaging Profile ID"
     }
   },
   "addons": [
     {
-      "plan": "heroku-postgresql"
+      "plan": "heroku-redis"
     }
   ]
 }

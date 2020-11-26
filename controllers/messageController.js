@@ -1,19 +1,20 @@
 const express  = require('express');
 const router = module.exports = express.Router();
+const urljoin = require('url-join');
+const phone = require('phone');
+
 const telnyx = require('telnyx')(process.env.TELNYX_API_KEY);
 
-const concatUrl = (b, e) => (new URL(e, b)).href
-
 const messageController = async (req, res) =>  {
-  const media = req.body.media_url;
+  const media_url = req.body.media_url;
   const messageRequest = {
-    to: req.body.to,
-    from: req.body.from,
+    to: phone(req.body.to)[0],
+    from: phone(req.body.from)[0],
     text: req.body.text,
-    webhook_url: concatUrl(`${req.protocol}://${req.hostname}`, '/messaging/outbound')
+    webhook_url: urljoin(`${req.protocol}://${req.hostname}`, '/messaging/outbound')
   }
-  if (media){
-    messageRequest.media_urls = [media];
+  if (media_url){
+    messageRequest.media_urls = [media_url];
   }
   try{
     const messageResponse = await telnyx.messages.create(messageRequest);
@@ -28,11 +29,13 @@ const messageController = async (req, res) =>  {
 
 const inboundMessageController = (req, res) => {
   console.log(req.body);
+  req.io.emit('messageCallback', req.body);
   res.sendStatus(200);
 }
 
 const outboundMessagingController = (req, res) => {
   console.log(req.body);
+  req.io.emit('messageCallback', req.body);
   res.sendStatus(200);
 }
 

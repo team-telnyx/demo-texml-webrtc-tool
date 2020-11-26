@@ -28,6 +28,7 @@ You will need to set up:
 * [Telnyx SIP Connection (Credentials)](https://portal.telnyx.com/#/app/connections)
 * Ability to receive webhooks (with something like [ngrok](https://developers.telnyx.com/docs/v2/development/ngrok?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link))
 * [Node & NPM](https://developers.telnyx.com/docs/v2/development/dev-env-setup?lang=node&utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link) installed
+* * [Redis](https://redislabs.com/) to manage dynamic TeXML
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
