@@ -37,6 +37,72 @@ module.exports.createTexmlCall = async data => {
   }
 }
 
+module.exports.endConference = async (conferenceId, organizationId) => {
+  console.log(`Ending Conference: ${conferenceId}`);
+  if (!conferenceId || !organizationId) {
+      return {
+      ok: false,
+      error: {
+        message: `Invalid: {"conferenceId": "${conferenceId}", {"organizationId": "${organizationId}"}`}
+    };
+  }
+  const config = {
+    auth: {
+      username: organizationId,
+      password: process.env.TELNYX_API_KEY,
+    },
+    method: 'post',
+    url: `https://api.telnyx.com/2010-04-01/Accounts/${organizationId}/Conferences/${conferenceId}.json`,
+    data: "Status=completed"
+  }
+  try {
+    const result = await axios(config);
+    console.log(`Ended conference conferenceId: ${conferenceId}`);
+    return {
+      ok: true,
+      ...result.data
+    };
+  }
+  catch (e) {
+    console.log('Error ending conference');
+    console.log(e);
+    return {
+      ok: false,
+      error: e
+    };
+  }
+}
+
+module.exports.updateTexmlApplication = async (connectionId, data) => {
+  console.log('Updating Texml Application');
+  const texmlApplicationUrl = urljoin('https://api.telnyx.com/v2/texml_applications/', connectionId);
+  console.log(data);
+  const config = {
+    headers: {
+      'Authorization': authorizationString
+    },
+    method: 'PATCH',
+    url: texmlApplicationUrl,
+    data
+  }
+  try {
+    const result = await axios(config);
+    console.log(`Updated texmlApplicationId: ${connectionId}`);
+    return {
+      ok: true,
+      ...result.data
+    };
+  }
+  catch (e) {
+    console.log(`Error updating texmlApplicationId: ${connectionId}`);
+    console.log(e);
+    return {
+      ok: false,
+      error: e
+    };
+  }
+}
+
 module.exports.gatherTeXML = gatherPrompt => `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Gather action="gather" numDigits="1">
@@ -57,7 +123,7 @@ module.exports.conferenceTeXML = (conferenceGreeting,conferenceId) => {
 <Response>
   <Say voice="alice">${conferenceGreeting}</Say>
   <Dial>
-    <Conference statusCallbackEvent="end" statusCallback="conference"> ${conferenceId}</Conference>
+    <Conference statusCallbackEvent="start end" statusCallback="conference"> ${conferenceId}</Conference>
   </Dial>
 </Response>`;
 }

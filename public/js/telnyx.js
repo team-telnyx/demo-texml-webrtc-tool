@@ -16,7 +16,26 @@ ready(function () {
   document.getElementById('calleeNumber').value = calleeNumber;
   document.getElementById('callerNumber').value = callerNumber;
   resetGreetings();
+  setCallbackUrls();
 });
+
+function setCallbackUrls () {
+  fetch(`/initialization`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({initialization: true})
+  })
+  .then(response => response.json())
+  .then(res => {
+    console.log(res)
+    return res;
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  })
+}
 
 function sendMessage(){
   const messageRequest = {
@@ -175,6 +194,7 @@ function disconnect() {
   connectStatus.innerHTML = 'Disconnecting...';
   client.disconnect();
   deleteSipURIFromServer();
+  deleteValueFromServer('conferenceId');
 }
 
 /**
@@ -264,12 +284,26 @@ function makeCall() {
   .catch(e => console.log(e));
 }
 
+function endConference() {
+  fetch('/conferences', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(e => console.log(e));
+}
+
 /**
  * Hangup the currentCall if present
  */
 function hangup() {
   if (currentCall) {
+    console.log('Hangingup call and ending conference');
     currentCall.hangup();
+    endConference();
   }
 }
 

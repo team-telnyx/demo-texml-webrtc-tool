@@ -48,7 +48,8 @@ const webRtcAnswerController = async (req, res) => {
   const conferenceId = texml.generateId();
   const promises = [
       texml.createTexmlCall(callRequest),
-      db.saveValueByKey("conferenceId", conferenceId)
+      db.saveValueByKey('conferenceId', conferenceId),
+      db.saveValueByKey('organizationId', req.body.AccountSid)
   ];
   const dbResults = await Promise.allSettled(promises);
   const allOk = dbResults.every(p=>p.value.ok);
@@ -59,7 +60,7 @@ const webRtcAnswerController = async (req, res) => {
 
 const gatherController = async (req, res) => {
   console.log(req.body);
-  const conferenceId = await db.getValueByKey("conferenceId");
+  const conferenceId = await db.getValueByKey('conferenceId');
   const event = req.body;
   const digits = parseInt(event.Digits);
   res.type("application/xml");
@@ -70,7 +71,12 @@ const gatherController = async (req, res) => {
 
 const conferenceStatusController = async (req, res) => {
   console.log(req.body);
-  await db.deleteValueByKey("conferenceId");
+  if (req.body.StatusCallbackEvent === 'conference-end') {
+    const dbResult = await db.deleteValueByKey("conferenceId");
+  }
+  if (req.body.StatusCallbackEvent === 'conference-start') {
+    console.log('Conference Started')
+  }
   res.sendStatus(200);
 }
 
