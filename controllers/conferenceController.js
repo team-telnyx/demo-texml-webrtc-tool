@@ -16,6 +16,7 @@ const deleteConference = async (req, res) => {
     res.status(400).send({message: 'Can not find organizationId in db'});
     return;
   }
+  const dbResult = await db.deleteValueByKey('conferenceId');
   const endConferenceResult = await texml.endConference(conferenceId.value.value, organizationId.value.value)
   endConferenceResult.ok ? res.status(200) : res.status(400);
   res.send(endConferenceResult);
