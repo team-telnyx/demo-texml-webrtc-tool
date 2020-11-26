@@ -129,7 +129,11 @@ Once you've set up `ngrok` or another tunneling service you can add the public p
 
 For now you'll leave “Failover URL” blank, but if you'd like to have Telnyx resend the webhook in the case where sending to the Webhook URL fails, you can specify an alternate address in this field.
 
-#### Create the call
+#### Open your Browser
+
+![screenshot](./app_screenshot.png)
+
+--Or--
 
 The service exposes a path at `http://your-url.ngrok.io/calls` to accept a JSON post request with the `to` & `from` number to create the outbound call. Where the `to` number is your **Cell** Number and the `from` is your **Telnyx** number.
 
