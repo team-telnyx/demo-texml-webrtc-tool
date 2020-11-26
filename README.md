@@ -47,7 +47,7 @@ The following environmental variables need to be set
 |:------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `TELNYX_API_KEY`              | Your [Telnyx API Key](https://portal.telnyx.com/#/app/api-keys?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link)              |
 | `TELNYX_PUBLIC_KEY`           | Your [Telnyx Public Key](https://portal.telnyx.com/#/app/account/public-key?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link) |
-| `TELNYX_APP_PORT`             | **Defaults to `8000`** The port the app will be served                                                                                                   |
+| `PORT`             | **Defaults to `8000`** The port the app will be served                                                                                                   |
 | `TELNYX_CONNECTION_ID`        | The ID of the [**TeXML** call-control-connection](https://portal.telnyx.com/#/app/call-control/texml) to use for placing the calls                       |
 | `TELNYX_MESSAGING_PROFILE_ID` | The ID of the [messaging profile](https://portal.telnyx.com/#/app/messaging) to use for placing the calls                                                |
 | `REDIS_URL`                   | The full connection URL to your Redis, like `redis://:abcsdf@...` _if using heroku, will be filled in by button_                                         |

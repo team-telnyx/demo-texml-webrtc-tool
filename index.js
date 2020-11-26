@@ -46,6 +46,6 @@ app.use(configurationPath, configurationController);
 app.use(conferencesPath, conferenceController);
 app.use(initializationPath, initializationController);
 
-const port = process.env.TELNYX_APP_PORT || 3000;
+const port = process.env.PORT || 3000;
 http.listen(port);
 console.log(`Server listening on port: ${port}`);
