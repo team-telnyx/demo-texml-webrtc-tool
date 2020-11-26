@@ -3,6 +3,8 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 
+const favicon = require('serve-favicon');
+const path = require('path')
 
 const texmlPath = '/texml';
 const callPath = '/calls';
@@ -29,6 +31,7 @@ const addIoToRoute = (req, res, next) => {
 };
 
 app.use(cors());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.static('public'))
 app.use(express.json());
 
