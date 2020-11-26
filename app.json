@@ -1,7 +1,7 @@
 {
   "name": "WebRTC TeXML Sample",
   "description": "A barebones Node.js app using Express",
-  "repository": "https://github.com/team-telnyx/demo-texml-webrtc",
+  "repository": "https://github.com/team-telnyx/demo-texml-webrtc-tool",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": ["node", "express", "static"],
   "env": {
