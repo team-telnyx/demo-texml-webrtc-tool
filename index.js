@@ -4,9 +4,11 @@ const express = require('express');
 let gatherSentence = require ('./texml').gatherSentence;
 const texmlController = require('./texmlController');
 const callController = require('./callController');
+const messageController = require('./messageController');
 const texmlPath = '/texml';
 const callPath = '/calls';
-const cors = require('cors')
+const messagePath = '/messaging';
+const cors = require('cors');
 
 const app = express();
 app.use(cors());
@@ -20,6 +22,7 @@ app.use((req, res, next) => {
 
 app.use(texmlPath, texmlController);
 app.use(callPath, callController);
+app.use(messagePath, messageController);
 
 app.post('/gatherSentence', (req, res) => {
   gatherSentence = req.body.gatherSentence;
