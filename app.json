@@ -1,0 +1,20 @@
+{
+  "name": "WebRTC TeXML Sample",
+  "description": "A barebones Node.js app using Express",
+  "repository": "https://github.com/team-telnyx/demo-texml-webrtc",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static"],
+  "env": {
+    "TELNYX_API_KEY": {
+      "description": "Your Telnyx API Bearer Key, like KEY...123"
+    },
+    "TELNYX_CONNECTION_ID": {
+      "description": "Your Telnyx TeXML Connection ID"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ]
+}
