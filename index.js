@@ -29,5 +29,6 @@ app.post('/gatherSentence', (req, res) => {
   res.send({status: "ok"});
 })
 
-app.listen(process.env.TELNYX_APP_PORT);
-console.log(`Server listening on port ${process.env.TELNYX_APP_PORT}`);
+const port = process.env.TELNYX_APP_PORT || 3000
+app.listen(port);
+console.log(`Server listening on port: ${port}`);
