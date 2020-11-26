@@ -28,7 +28,7 @@ You will need to set up:
 * [Telnyx SIP Connection (Credentials)](https://portal.telnyx.com/#/app/connections)
 * Ability to receive webhooks (with something like [ngrok](https://developers.telnyx.com/docs/v2/development/ngrok?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link))
 * [Node & NPM](https://developers.telnyx.com/docs/v2/development/dev-env-setup?lang=node&utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link) installed
-* * [Redis](https://redislabs.com/) to manage dynamic TeXML
+* [Redis](https://redislabs.com/) to manage dynamic TeXML
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -36,18 +36,21 @@ You will need to set up:
 
 * Create a custom greeting
 * Connect to a call with WebRTC
+* Receive a Call
+* Send an outbound message
 
 ## Usage
 
 The following environmental variables need to be set
 
-| Variable               | Description                                                                                                                                              |
-|:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `TELNYX_API_KEY`       | Your [Telnyx API Key](https://portal.telnyx.com/#/app/api-keys?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link)              |
-| `TELNYX_PUBLIC_KEY`    | Your [Telnyx Public Key](https://portal.telnyx.com/#/app/account/public-key?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link) |
-| `TELNYX_APP_PORT`      | **Defaults to `8000`** The port the app will be served                                                                                                   |
-| `BASE_URL`             | Your **NGROK DOMAIN** like `"http://your-url.ngrok.io"`                                                                                                  |
-| `TELNYX_CONNECTION_ID` | The ID of the [**TeXML** call-control-connection](https://portal.telnyx.com/#/app/call-control/texml) to use for placing the calls                          |
+| Variable                      | Description                                                                                                                                              |
+|:------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `TELNYX_API_KEY`              | Your [Telnyx API Key](https://portal.telnyx.com/#/app/api-keys?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link)              |
+| `TELNYX_PUBLIC_KEY`           | Your [Telnyx Public Key](https://portal.telnyx.com/#/app/account/public-key?utm_source=referral&utm_medium=github_referral&utm_campaign=cross-site-link) |
+| `TELNYX_APP_PORT`             | **Defaults to `8000`** The port the app will be served                                                                                                   |
+| `TELNYX_CONNECTION_ID`        | The ID of the [**TeXML** call-control-connection](https://portal.telnyx.com/#/app/call-control/texml) to use for placing the calls                       |
+| `TELNYX_MESSAGING_PROFILE_ID` | The ID of the [messaging profile](https://portal.telnyx.com/#/app/messaging) to use for placing the calls                                                |
+| `REDIS_URL`                   | The full connection URL to your Redis, like `redis://:abcsdf@...` _if using heroku, will be filled in by button_                                         |
 
 ### .env file
 
@@ -60,15 +63,18 @@ TELNYX_PUBLIC_KEY="KEYasdf"
 TELNYX_API_KEY="+kWXUag92mcU="
 TELNYX_APP_PORT=8000
 TELNYX_CONNECTION_ID=1494404757140276705
-BASE_URL="http://your-url.ngrok.io"
+TELNYX_MESSAGING_PROFILE_ID=4001756a-a44b-424a-b73a-8ab676598fc3
+REDIS_URL=redis://:@e.compute-1.amazonaws.com:234
+
 ```
 
 ### Callback URLs For Telnyx Applications
 
-| Callback Type                         | URL                                 |
-|:--------------------------------------|:------------------------------------|
-| Outbound Call-Control Status Callback | `{ngrok-url}/texml/pstn-answer` and `{ngrok-url}/texml/webrtc-answer`|
-| Inbound Call-Control Status Callback  | `{ngrok-url}/call-control/answer`  |
+| Callback Type                         | URL                                                                   |
+|:--------------------------------------|:----------------------------------------------------------------------|
+| Outbound Call-Control Status Callback | `{ngrok-url}/texml/pstn-answer` and `{ngrok-url}/texml/webrtc-answer` |
+| Inbound Call-Control Status Callback  | `{ngrok-url}/texml/inbound`                                           |
+| Inbound Message                       | `{ngrok-url}/messaging/inbound`                                       |
 
 ### Install
 
