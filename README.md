@@ -147,3 +147,7 @@ curl --location --request POST 'http://your-url.ngrok.io/calls' \
 }'
 ```
 
+#### Messaging
+
+The application also supports basic messaging functionality. The phone number must be assigned to the messaging profile created for the application. Inbound messages are sent via WebSockets to the client and are printed in the Browser's console
+
