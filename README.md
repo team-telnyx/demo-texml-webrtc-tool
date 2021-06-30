@@ -14,8 +14,8 @@ The full documentation and tutorial is available on [developers.telnyx.com](http
 
 ## Video Walk Through
 
-[![Play Video](video_play.png)](https://drive.google.com/file/d/1k7Hmx2dBzIyxTrsaxnmpdjgiqqCE3n-G/view?usp=sharing)
-[👉Click Here👈](https://drive.google.com/file/d/1k7Hmx2dBzIyxTrsaxnmpdjgiqqCE3n-G/view?usp=sharing)
+[![Play Video](video_play.png)](https://www.loom.com/share/8036520f9ec3412488de330e8e8a636d)
+[👉Click Here👈](https://www.loom.com/share/8036520f9ec3412488de330e8e8a636d)
 
 ## Pre-Reqs
 
